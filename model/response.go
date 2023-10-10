@@ -9,12 +9,12 @@ type ClinicReference struct {
 	URL  string `json:"url"`
 }
 
-type ResponseContact struct {
-	Total int                   `json:"total"`
-	List  []ResponseContactList `json:"list"`
+type ResponseContactList struct {
+	Total int               `json:"total"`
+	List  []ResponseContact `json:"list"`
 }
 
-type ResponseContactList struct {
+type ResponseContact struct {
 	ClinicName string  `json:"clinicName"`
 	URL        string  `json:"url"`
 	Entity     string  `json:"entity"`

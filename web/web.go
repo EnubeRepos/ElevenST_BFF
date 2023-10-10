@@ -41,7 +41,7 @@ func (w Web) GetContactByDocumentNumber(url, docNumber string) (model.ContactLis
 
 		filter := fmt.Sprintf(`?maxSize=%d&offset=%d&orderBy=name&order=asc&where[0][type]=equals&where[0][attribute]=documentNumber&where[0][value]=%s`, maxSize, offset, uri.QueryEscape(docNumber))
 
-		_, err := MakeRequest(url+API_PATH+"Contact"+filter, header, nil, temp)
+		_, err := MakeRequest(url+API_PATH+"Contact"+filter, header, nil, &temp)
 		if err != nil {
 			w.Log.Error("Error making GET request")
 			return list, err
