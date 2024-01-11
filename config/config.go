@@ -5,13 +5,13 @@ import (
 	"time"
 
 	"github.com/EnubeRepos/ElevenST_BFF/model"
-	"github.com/EnubeRepos/ElevenST_BFF/web"
 	"github.com/sirupsen/logrus"
 )
 
 type Config struct {
 	Log           *logrus.Logger
 	Authorization string
+	APIAuth       string
 	Clinics       []model.ClinicReference
 }
 
@@ -19,15 +19,16 @@ func New() (*Config, error) {
 	var clinicRef model.ClinicReferenceList
 	var cfg Config
 
-	header := map[string]string{
-		"Method": "GET",
-	}
+	// header := map[string]string{
+	// 	"Method": "GET",
+	// }
 
-	var ClinicReferenceList = os.Getenv("CLINIC_REFERENCE")
-	_, err := web.MakeRequest(ClinicReferenceList, header, nil, &clinicRef)
-	if err != nil {
-		return &cfg, err
-	}
+	// var ClinicReferenceList = os.Getenv("CLINIC_REFERENCE")
+	var AuthorizationAPI = os.Getenv("API_AUTH")
+	// _, err := web.MakeRequest(ClinicReferenceList, header, nil, &clinicRef)
+	// if err != nil {
+	// 	return &cfg, err
+	// }
 
 	l := logrus.New()
 	l.SetFormatter(&logrus.JSONFormatter{
@@ -38,6 +39,7 @@ func New() (*Config, error) {
 
 	cfg.Authorization = os.Getenv("AUTH")
 	cfg.Clinics = clinicRef.List
+	cfg.APIAuth = AuthorizationAPI
 	cfg.Log = l
 
 	return &cfg, nil

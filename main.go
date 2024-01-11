@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"os"
 	"sync"
 
 	"github.com/EnubeRepos/ElevenST_BFF/config"
 	"github.com/EnubeRepos/ElevenST_BFF/model"
 	"github.com/EnubeRepos/ElevenST_BFF/web"
+	"github.com/EnubeRepos/ElevenST_BFF/web/routes"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,21 +24,8 @@ func main() {
 		return
 	}
 
-	var AppConfig = App{
-		Config: cfg,
-		Web:    web.New(cfg.Log, cfg.Authorization),
-	}
+	routes.Set(cfg)
 
-	r := gin.Default()
-
-	gin.SetMode(gin.ReleaseMode)
-
-	r.GET("/contact/:cpf", AppConfig.RetrieveContacts)
-
-	err = r.Run(":" + os.Getenv("PORT"))
-	if err != nil {
-		cfg.Log.Error(err.Error())
-	}
 }
 
 func (App *App) RetrieveContacts(ctx *gin.Context) {
