@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ElevenStation BFF Production",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/main.go",
+            "env": {
+                "API_AUTH": "ZWxldmVuU1RCRkY6UGVpeEAwMQ==",
+                "CLINIC_REFERENCE": "PLACEHOLDER",
+                "AUTH": "PLACEHOLDER"
+            }
+        }
+    ]
+}
