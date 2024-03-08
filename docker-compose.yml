@@ -1,0 +1,11 @@
+version: '3'
+services:
+  eleven-station-bff:
+    image: eleven-bff:QA-0.0.1
+    restart: always
+    environment:
+        API_AUTH: "ZWxldmVuU1RCRkY6UGVpeEAwMQ=="
+        CLINIC_REFERENCE: "PLACEHOLDER"
+        AUTH: "PLACEHOLDER"
+    ports:
+      - 8090:8090
