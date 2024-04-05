@@ -1,28 +1,49 @@
 {
-    "list": [
-        {
-            "clinicName": "CP CLINIC SAÚDE & BELEZA LTDA",
-            "url": "https://cpclinic.elevenstation.com"
-        },
-        {
-            "clinicName": "DR. MARCELO PINA",
-            "url": "https://marcelopina.elevenstation.com"
-        },
-        {
-            "clinicName": "HAUTE LAB",
-            "url": "https://hautelab.elevenstation.com"
-        },
-        {
-            "clinicName": "Imuno Brasil Serviços Médicos LTDA",
-            "url": "https://cobra.elevenstation.com"
-        },
-        {
-            "clinicName": "BARA CLÍNICA MÉDICA LTDA",
-            "url": "https://bara.elevenstation.com"
-        },
-        {
-            "clinicName": "CLÍNICA DR SUN LTDA",
-            "url": "https://drsun.elevenstation.com"
-        }
-    ]
+  "list": [
+    {
+      "clinicName": "Imuno Brasil Serviços Médicos LTDA",
+      "url": "https://cobra.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "LF Serviços Médicos de Reumatologia LTDA",
+      "url": "https://cobra.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "CLÍNICA DR SUN LTDA",
+      "url": "https://drsun.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "BARA CLÍNICA MÉDICA LTDA",
+      "url": "https://bara.elevenstation.com",
+      "active": true
+    },
+    {
+      "clinicName": "HAUTE LAB MEDICINA DIAGNÓSTICA LTDA",
+      "url": "https://hautelab.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "Douglas Sterzza Dias Servicos Medicos LTDA",
+      "url": "https://douglas-sterzza.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "FABRICIO RUSSO DINIZ",
+      "url": "https://fabriciorusso.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "IB FISIO LTDA",
+      "url": "https://ibfisio.elevenstation.com",
+      "active": false
+    },
+    {
+      "clinicName": "Clinica ElevenStation",
+      "url": "https://app.elevenstation.com",
+      "active": false
+    }
+  ]
 }

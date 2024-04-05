@@ -12,6 +12,8 @@ func Set(cfg *config.Config) {
 	gin.SetMode(gin.ReleaseMode)
 	api := r.Group("/api/v1/")
 	api.POST("pix/generate", func(ctx *gin.Context) { controller.GeneratePixController(ctx, cfg) })
+	api.GET("contact/cpf/:cpf", func(ctx *gin.Context) { controller.GetContactByCPF(ctx, cfg) })
+
 	// r.GET("/contact/:cpf", AppConfig.RetrieveContacts)
 	err := r.Run(":8090")
 	if err != nil {
