@@ -37,3 +37,18 @@ func GeneratePixController(c *gin.Context, cfg *config.Config) {
 	}
 	c.JSON(http.StatusOK, res)
 }
+
+func GetContactByCPF(c *gin.Context, cfg *config.Config) {
+	auth := c.GetHeader("Authorization")
+	if auth != fmt.Sprintf("Basic %s", cfg.APIAuth) {
+		err := apiError.NewUnauthorizedError("This Authorization don't have access to use this resource")
+		c.JSON(http.StatusUnauthorized, err)
+		return
+	}
+	contactCpf := c.Param("cpf")
+	data, err := service.GetContactsInAllPlatforms(contactCpf, cfg)
+	if err != nil {
+		c.JSON(http.StatusBadGateway, err)
+	}
+	c.JSON(http.StatusOK, data)
+}

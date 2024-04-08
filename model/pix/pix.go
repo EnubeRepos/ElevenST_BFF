@@ -1,25 +1,16 @@
 package pix
 
-// PixOpts is a configuration struct.
 type PixOpts struct {
-	// Pix Key (CPF/CNPJ, Email, Cellphone or Random Key)
-	Key string
-	// Receiver name
-	Name string
-	// Receiver city
-	// Transaction amount
-	Amount float64
-	// Transaction description
+	Key         string
+	Name        string
+	Amount      float64
 	Description string
-	// Transaction ID
+	City        string
 }
 
-// QRCodeOpts is a configuration struct.
 type QRCodeOpts struct {
-	// QR Code content
 	Content string
-	// Default: 256
-	Size int
+	Size    int
 }
 
 type APIRequestQRCode struct {

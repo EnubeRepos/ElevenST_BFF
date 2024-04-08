@@ -53,7 +53,7 @@ func (c *CRMconfig) GET(URL, Entity, Resource string) ([]byte, apiError.RestErr)
 	}
 
 	if res.StatusCode == 404 {
-		return nil, apiError.NewNotFoundError(fmt.Sprintf("Not Found | URL: %s, Entity: %s, Resource: %s", URL, Entity, Resource))
+		return nil, apiError.NewNotFoundError(fmt.Sprintf("Not Found | URL: %s, Entity: %s, Resource: %s", url, Entity, Resource))
 	}
 
 	defer res.Body.Close()

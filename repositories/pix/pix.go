@@ -13,10 +13,30 @@ import (
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
 
+	pixLib "github.com/fonini/go-pix/pix"
 	"github.com/r10r/crc16"
 )
 
 type intMap map[int]interface{}
+
+func GeneratePixCopyPast(amt float64, name, descpt, pixKey string) (string, error) {
+	options := pixLib.Options{
+		Name:          name,
+		Key:           pixKey,
+		City:          "Sao Paulo",
+		Amount:        amt,          // optional
+		Description:   "Invoice #4", // optional
+		TransactionID: "0001",       // optional
+	}
+
+	copyPaste, err := pixLib.Pix(options)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return copyPaste, err
+}
 
 func GeneratePaste(amt float64, name, descpt, pixKey string) (string, error) {
 	opts := pix.PixOpts{
@@ -24,6 +44,7 @@ func GeneratePaste(amt float64, name, descpt, pixKey string) (string, error) {
 		Description: descpt,
 		Amount:      amt,
 		Key:         pixKey,
+		City:        "São Paulo",
 	}
 
 	paste, err := Pix(opts)

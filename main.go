@@ -2,14 +2,10 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"sync"
 
 	"github.com/EnubeRepos/ElevenST_BFF/config"
-	"github.com/EnubeRepos/ElevenST_BFF/model"
 	"github.com/EnubeRepos/ElevenST_BFF/web"
 	"github.com/EnubeRepos/ElevenST_BFF/web/routes"
-	"github.com/gin-gonic/gin"
 )
 
 type App struct {
@@ -23,45 +19,43 @@ func main() {
 		fmt.Println("error initing config")
 		return
 	}
-
 	routes.Set(cfg)
-
 }
 
-func (App *App) RetrieveContacts(ctx *gin.Context) {
-	var contactList model.ResponseContactList
-	var rsp []model.ResponseContact
-	var wg sync.WaitGroup
-	wg.Add(len(App.Config.Clinics))
+// func (App *App) RetrieveContacts(ctx *gin.Context) {
+// 	var contactList model.ResponseContactList
+// 	var rsp []model.ResponseContact
+// 	var wg sync.WaitGroup
+// 	wg.Add(len(App.Config.Clinics))
 
-	for _, clinic := range App.Config.Clinics {
-		go func(clinic model.ClinicReference) {
-			defer wg.Done()
+// 	for _, clinic := range App.Config.Clinics {
+// 		go func(clinic model.ClinicReference) {
+// 			defer wg.Done()
 
-			list, err := App.Web.GetContactByDocumentNumber(clinic.URL, ctx.Param("cpf"))
-			if err != nil {
-				App.Config.Log.Error(err.Error())
-				return
-			}
+// 			list, err := App.Web.GetContactByDocumentNumber(clinic.URL, ctx.Param("cpf"))
+// 			if err != nil {
+// 				App.Config.Log.Error(err.Error())
+// 				return
+// 			}
 
-			if list.Total == 0 {
-				App.Config.Log.Info(fmt.Sprintf("Clinic: %s | Contact not found with doc: %s", clinic.Name, ctx.Param("cpf")))
-				return
-			}
+// 			if list.Total == 0 {
+// 				App.Config.Log.Info(fmt.Sprintf("Clinic: %s | Contact not found with doc: %s", clinic.Name, ctx.Param("cpf")))
+// 				return
+// 			}
 
-			rsp = append(rsp, model.ResponseContact{
-				ClinicName: clinic.Name,
-				URL:        clinic.URL,
-				Entity:     "Contact",
-				Content:    list.List[0],
-			})
-		}(clinic)
-	}
+// 			rsp = append(rsp, model.ResponseContact{
+// 				ClinicName: clinic.Name,
+// 				URL:        clinic.URL,
+// 				Entity:     "Contact",
+// 				Content:    list.List[0],
+// 			})
+// 		}(clinic)
+// 	}
 
-	wg.Wait()
+// 	wg.Wait()
 
-	contactList.Total = len(rsp)
-	contactList.List = rsp
+// 	contactList.Total = len(rsp)
+// 	contactList.List = rsp
 
-	ctx.JSON(http.StatusOK, contactList)
-}
+// 	ctx.JSON(http.StatusOK, contactList)
+// }
