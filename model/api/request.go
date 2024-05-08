@@ -35,6 +35,12 @@ func (pg *PixGenerate) ValidateBody() apiError.RestErr {
 	if pg.LegalName == "" {
 		return apiError.NewBadRequestError("field legalName must be set")
 	}
+	limitExceeded := len(pg.LegalName) > 25
+	if limitExceeded {
+		newName := adjustStringSize(pg.LegalName, 25)
+		pg.LegalName = newName
+	}
+
 	if pg.Amount == 0.0 {
 		return apiError.NewBadRequestError("field amount must be set")
 	}
@@ -42,4 +48,11 @@ func (pg *PixGenerate) ValidateBody() apiError.RestErr {
 		return apiError.NewBadRequestError("field pixKey must be set")
 	}
 	return nil
+}
+
+func adjustStringSize(s string, desiredLength int) string {
+	if len(s) <= desiredLength {
+		return s
+	}
+	return s[:desiredLength]
 }
